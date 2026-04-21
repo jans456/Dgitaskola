@@ -1,0 +1,6 @@
+    // "jalanin": "mocha tests --recursive --timeout 5000 --reporter mocha-simple-html-reporter --reporter-options output=test-report.html"
+  // },//
+
+    "scripts": {
+    "jalanin": "mocha tests --recursive --timeout 5000 --reporter spec",
+     "jalanin-html": "mocha tests --recursive --timeout 5000 --reporter mocha-simple-html-reporter --reporter-options output=test-report.html"

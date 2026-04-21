@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "Ini deskripsi project nya",
   "type": "module",
-  "scripts": {
+ "scripts": {
     "jalanin": "mocha tests --recursive --timeout 5000 --reporter spec"
-    // "jalanin": "mocha tests --recursive --timeout 5000 --reporter mocha-simple-html-reporter --reporter-options output=test-report.html"
-  // },
   },
   "dependencies": {
     "node-fetch": "^3.3.1",

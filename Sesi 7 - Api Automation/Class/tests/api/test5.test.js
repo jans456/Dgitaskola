@@ -10,10 +10,10 @@
 
 //         const response = await fetch("https://reqres.in/api/users/2", {
 //             headers: { "x-api-key": "reqres_bc7d582aeb1e47959840e1bb200dfdd3" },
-//             body: JSON.stringify({
-//                 name:"morpheus",
-//                 job:"leader"
-//             }),
+            // body: JSON.stringify({
+            //     name:"morpheus",
+            //     job:"leader"
+            // }),
 //     });
 
 //        expect(response.status, 'the testcase is error').to.equal(200);

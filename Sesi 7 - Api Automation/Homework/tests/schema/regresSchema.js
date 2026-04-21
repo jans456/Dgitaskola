@@ -1,0 +1,127 @@
+const schema_getuser = {
+
+
+  // ------------------------- contoh gagal karna beda schema
+//   "$schema": "http://json-schema.org/draft-07/schema#",
+//   "title": "Generated schema for Root",
+//   "type": "object",
+//   "properties": {
+//     "userId": {
+//       "type": "number"
+//     },
+//     "id": {
+//       "type": "number"
+//     },
+//     "title": {
+//       "type": "string"
+//     },
+//     "avatar": {
+//       "type": "boolean"
+//     }
+//   },
+//   "required": [
+//     "userId",
+//     "id",
+//     "title",
+//     "completed"
+//   ]
+// };
+
+// yang benar
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "email": { "type": "string" },
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "avatar": { "type": "string" }
+      },
+      "required": ["id", "email", "first_name", "last_name", "avatar"]
+    },
+    "support": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "text": { "type": "string" }
+      },
+      "required": ["url", "text"]
+    },
+    "_meta": {
+      "type": "object",
+      "properties": {
+        "powered_by": { "type": "string" },
+        "docs_url": { "type": "string" },
+        "upgrade_url": { "type": "string" },
+        "example_url": { "type": "string" },
+        "variant": { "type": "string" },
+        "message": { "type": "string" },
+        "cta": {
+          "type": "object",
+          "properties": {
+            "label": { "type": "string" },
+            "url": { "type": "string" }
+          },
+          "required": ["label", "url"]
+        },
+        "context": { "type": "string" }
+      },
+      "required": [
+        "powered_by",
+        "docs_url",
+        "upgrade_url",
+        "example_url",
+        "variant",
+        "message",
+        "cta",
+        "context"
+      ]
+    }
+  },
+  "required": ["data", "support", "_meta"]
+};
+
+
+const schema_createuser = {
+  type: "object",
+  properties: {
+    token: { type: "string" },
+    _meta: {
+      type: "object",
+      properties: {
+        powered_by: { type: "string" },
+        docs_url: { type: "string" },
+        upgrade_url: { type: "string" },
+        example_url: { type: "string" },
+        variant: { type: "string" },
+        message: { type: "string" },
+        cta: {
+          type: "object",
+          properties: {
+            label: { type: "string" },
+            url: { type: "string" }
+          },
+          required: ["label", "url"]
+        },
+        context: { type: "string" }
+      },
+      required: [
+        "powered_by",
+        "docs_url",
+        "upgrade_url",
+        "example_url",
+        "variant",
+        "message",
+        "cta",
+        "context"
+      ]
+    }
+  },
+  required: ["token", "_meta"]
+};
+
+
+
+export default { schema_getuser, schema_createuser };

@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-26T11:41:01.522Z",
+    "end": "2026-04-26T11:41:06.713Z",
+    "duration": 5191,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9f7cd3a7-ee3d-4b86-9c43-e40d5c9cb8db",
+      "title": "",
+      "fullFile": "D:\\Digitalskola\\Sesi 9 -Web UI Automation Fundamental\\Class\\tests\\test2-sauce.js",
+      "file": "\\tests\\test2-sauce.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "12c79a71-a423-4d80-a34e-ac354acdfcf8",
+          "title": "Saucedemo Login Valid",
+          "fullFile": "D:\\Digitalskola\\Sesi 9 -Web UI Automation Fundamental\\Class\\tests\\test2-sauce.js",
+          "file": "\\tests\\test2-sauce.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Login Valid Saucedemo",
+              "fullTitle": "Saucedemo Login Valid Login Valid Saucedemo",
+              "timedOut": false,
+              "duration": 5182,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();\nawait driver.get('https://www.saucedemo.com');\nlet inputUsername = await driver.findElement(By.css('[data-test=\"username\"]'))\nlet inputPassword = await driver.findElement(By.xpath('//*[@data-test=\"password\"]'))\nlet buttonLogin = await driver.findElement(By.className('submit-button btn_action'))\nawait inputUsername.sendKeys('standard_user')\nawait inputPassword.sendKeys('secret_sauce')\nawait buttonLogin.click()\n\n\nawait driver.quit();",
+              "err": {},
+              "uuid": "657fb389-3029-483a-8f6a-391bbd59de2c",
+              "parentUUID": "12c79a71-a423-4d80-a34e-ac354acdfcf8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "657fb389-3029-483a-8f6a-391bbd59de2c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5182,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 50000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 50000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}

@@ -41,6 +41,7 @@ async function runTest(driver) {
 
     const option = await driver.findElement(By.xpath('//option[text()="Price (low to high)"]'));
     await option.click();
+
     await driver.sleep(3000);
 
     const option1 = await driver.findElement(By.xpath('//option[text()="Name (A to Z)"]'));
@@ -55,7 +56,7 @@ describe('Task Login & Sort Multi Browser', function () {
 
     it('Valid Login & Verify Sort', async function () {
 
-        // 🔹 CHROME
+        //  CHROME
         const chromeOptions = new chrome.Options();
         chromeOptions.addArguments('--incognito');
 
@@ -64,7 +65,7 @@ describe('Task Login & Sort Multi Browser', function () {
             .setChromeOptions(chromeOptions)
             .build();
 
-        // 🔹 FIREFOX
+        //  FIREFOX
         const firefoxOptions = new firefox.Options();
 
         const driverFirefox = await new Builder()
@@ -72,7 +73,7 @@ describe('Task Login & Sort Multi Browser', function () {
             .setFirefoxOptions(firefoxOptions)
             .build();
 
-        // 🔥 Jalankan test di kedua browser
+        //  Jalankan test di kedua browser
         const drivers = [driverChrome, driverFirefox];
 
         for (let driver of drivers) {

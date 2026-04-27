@@ -3,7 +3,7 @@ const assert = require('assert');
 const chrome = require('selenium-webdriver/chrome');
 const firefox = require('selenium-webdriver/firefox');
 
-// 🔥 function reusable (dipakai semua browser)
+//  function reusable (dipakai semua browser)
 async function runTest(driver) {
 
     // buka website
@@ -41,9 +41,14 @@ async function runTest(driver) {
 
     const option = await driver.findElement(By.xpath('//option[text()="Price (low to high)"]'));
     await option.click();
+    await driver.sleep(3000);
+
+    const option1 = await driver.findElement(By.xpath('//option[text()="Name (A to Z)"]'));
+    await option1.click();
+    
 
     // delay biar kelihatan (opsional)
-    await driver.sleep(1500);
+    await driver.sleep(3000);
 }
 
 describe('Task Login & Sort Multi Browser', function () {

@@ -1,15 +1,15 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 1,
+    "suites": 2,
+    "tests": 2,
     "passes": 1,
     "pending": 0,
-    "failures": 0,
-    "start": "2026-04-27T16:14:20.694Z",
-    "end": "2026-04-27T16:14:22.831Z",
-    "duration": 2137,
-    "testsRegistered": 1,
-    "passPercent": 100,
+    "failures": 1,
+    "start": "2026-04-27T17:03:46.464Z",
+    "end": "2026-04-27T17:03:48.272Z",
+    "duration": 1808,
+    "testsRegistered": 2,
+    "passPercent": 50,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,19 +18,19 @@
   },
   "results": [
     {
-      "uuid": "7401c8e8-1ac9-4029-9a22-9efe2568b27c",
+      "uuid": "688064c4-9093-4759-9e78-20e7af61471d",
       "title": "",
-      "fullFile": "D:\\Digitalskola\\Sesi 10 - Web UI Automation Advance Part 1\\Class\\tests\\login.test.js",
-      "file": "\\tests\\login.test.js",
+      "fullFile": "",
+      "file": "",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "2f607c7f-6e1a-4f91-84d0-7f33f73ee7a4",
+          "uuid": "bbfa1a73-cfc0-478a-a822-8fde1cc59567",
           "title": "Login",
-          "fullFile": "D:\\Digitalskola\\Sesi 10 - Web UI Automation Advance Part 1\\Class\\tests\\login.test.js",
-          "file": "\\tests\\login.test.js",
+          "fullFile": "D:\\Digitalskola\\Sesi 10 - Web UI Automation Advance Part 1\\Class\\tests\\Cross-browser Automation.test copy.js",
+          "file": "\\tests\\Cross-browser Automation.test copy.js",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
@@ -38,29 +38,72 @@
               "title": "should login with valid credentials",
               "fullTitle": "Login should login with valid credentials",
               "timedOut": false,
-              "duration": 2126,
+              "duration": 1,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "let options = new chrome.Options(); \noptions.addArguments('--headless'); \n\nconst driver = new Builder()\n.forBrowser('firefox') // ganti declare sesuaikan dengan browser yang ingin ditest cukup ganti ini saja\n.setChromeOptions(options) \nawait driver.get('https://www.saucedemo.com/');\nawait driver.findElement(By.id('user-name')).sendKeys('standard_user');\nawait driver.findElement(By.id('password')).sendKeys('secret_sauce');\nawait driver.findElement(By.id('login-button')).click();\nawait driver.wait(until.elementLocated(By.className('title')), 5000);\nconst title = await driver.findElement(By.className('title')).getText();\nassert.strictEqual(title, 'Products');\nawait driver.quit();",
+              "err": {
+                "message": "TypeError: driver.get is not a function",
+                "estack": "TypeError: driver.get is not a function\n    at Context.<anonymous> (tests\\Cross-browser Automation.test copy.js:14:22)\n    at process.processImmediate (node:internal/timers:485:21)",
+                "diff": null
+              },
+              "uuid": "25f9f3ae-ddd3-4e4d-8819-d9f11f741242",
+              "parentUUID": "bbfa1a73-cfc0-478a-a822-8fde1cc59567",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "25f9f3ae-ddd3-4e4d-8819-d9f11f741242"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 1,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 50000
+        },
+        {
+          "uuid": "105e84b0-1e8f-460f-9d89-c0dfc14905aa",
+          "title": "Login",
+          "fullFile": "D:\\Digitalskola\\Sesi 10 - Web UI Automation Advance Part 1\\Class\\tests\\headless.test.js",
+          "file": "\\tests\\headless.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login with valid credentials",
+              "fullTitle": "Login should login with valid credentials",
+              "timedOut": false,
+              "duration": 1790,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "const driver = new Builder().forBrowser('chrome').build();\nawait driver.get('https://www.saucedemo.com/');\nawait driver.findElement(By.id('user-name')).sendKeys('standard_user');\nawait driver.findElement(By.id('password')).sendKeys('secret_sauce');\nawait driver.findElement(By.id('login-button')).click();\nawait driver.wait(until.elementLocated(By.className('title')), 5000);\nconst title = await driver.findElement(By.className('title')).getText();\nassert.strictEqual(title, 'Products');\nawait driver.quit();",
+              "code": "let options = new chrome.Options(); //set Declare variable headless\noptions.addArguments('--headless'); //set Declare variable headless\n\nconst driver = new Builder()\n.forBrowser('chrome')\n.setChromeOptions(options) // add set chrome for headless\n.build();\nawait driver.get('https://www.saucedemo.com/');\nawait driver.findElement(By.id('user-name')).sendKeys('standard_user');\nawait driver.findElement(By.id('password')).sendKeys('secret_sauce');\nawait driver.findElement(By.id('login-button')).click();\nawait driver.wait(until.elementLocated(By.className('title')), 5000);\nconst title = await driver.findElement(By.className('title')).getText();\nassert.strictEqual(title, 'Products');\nawait driver.quit();",
               "err": {},
-              "uuid": "c26d30fa-cbb8-4cff-97bb-5656cf30bb9a",
-              "parentUUID": "2f607c7f-6e1a-4f91-84d0-7f33f73ee7a4",
+              "uuid": "8941db54-4d30-481a-9944-fc7c98d7ee76",
+              "parentUUID": "105e84b0-1e8f-460f-9d89-c0dfc14905aa",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "c26d30fa-cbb8-4cff-97bb-5656cf30bb9a"
+            "8941db54-4d30-481a-9944-fc7c98d7ee76"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2126,
+          "duration": 1790,
           "root": false,
           "rootEmpty": false,
           "_timeout": 50000

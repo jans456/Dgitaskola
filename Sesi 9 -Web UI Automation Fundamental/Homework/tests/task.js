@@ -9,7 +9,7 @@
 
 //     this.timeout(40000);
 
-//     // 🔹 CHROME
+//     //  CHROME
 //     it('Chrome - Login & Sorting', async function () {
 
 //         const options = new chrome.Options().addArguments('--incognito');
@@ -43,23 +43,23 @@
 //             let dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
 //             let select = new Select(dropdown);
 
-//             // 🔹 lohi
+//             //  lohi
 //             await select.selectByValue('lohi');
 //             await driver.sleep(2000);
 
-//             // 🔹 az
+//             //  az
 //             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
 //             select = new Select(dropdown);
 //             await select.selectByValue('az');
 //             await driver.sleep(2000);
 
-//             // 🔹 za
+//             //  za
 //             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
 //             select = new Select(dropdown);
 //             await select.selectByValue('za');
 //             await driver.sleep(2000);
 
-//             // 🔹 hilo
+//             //  hilo
 //             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
 //             select = new Select(dropdown);
 //             await select.selectByValue('hilo');
@@ -70,7 +70,7 @@
 //         }
 //     });
 
-//     // 🔹 FIREFOX
+//     // FIREFOX
 //     it('Firefox - Login & Sorting', async function () {
 
 //         const driver = await new Builder()
@@ -200,9 +200,9 @@ describe('Task Login & Sort Multi Browser (FAST)', function () {
         }
     });
 
-    // =========================
-    // 🔹 FIREFOX
-    // =========================
+    
+    //  FIREFOX
+   
     it('Firefox - Login & Sorting FAST', async function () {
 
         const driver = await new Builder()

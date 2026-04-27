@@ -98,17 +98,17 @@
 //             let dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
 //             let select = new Select(dropdown);
 
-//             await select.selectByValue('lohi');
-//             await driver.sleep(2000);
-
-//             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
-//             select = new Select(dropdown);
 //             await select.selectByValue('az');
 //             await driver.sleep(2000);
 
 //             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
 //             select = new Select(dropdown);
 //             await select.selectByValue('za');
+//             await driver.sleep(2000);
+
+//             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
+//             select = new Select(dropdown);
+//             await select.selectByValue('lohi');
 //             await driver.sleep(2000);
 
 //             dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
@@ -135,7 +135,7 @@ describe('Task Login & Sort Multi Browser (FAST)', function () {
 
     this.timeout(30000);
 
-    // 🔹 reusable wait setelah sorting
+    // reusable wait setelah sorting
     async function waitInventoryLoaded(driver) {
         await driver.wait(
             until.elementsLocated(By.className('inventory_item')),
@@ -143,7 +143,7 @@ describe('Task Login & Sort Multi Browser (FAST)', function () {
         );
     }
 
-    // 🔹 reusable sorting
+    // reusable sorting
     async function doSort(driver, value) {
         const dropdown = await driver.findElement(By.css('[data-test="product-sort-container"]'));
         const select = new Select(dropdown);
@@ -154,9 +154,9 @@ describe('Task Login & Sort Multi Browser (FAST)', function () {
         await waitInventoryLoaded(driver);
     }
 
-    // =========================
-    // 🔹 CHROME
-    // =========================
+    
+    //  CHROME
+   
     it('Chrome - Login & Sorting FAST', async function () {
 
         const options = new chrome.Options();
@@ -190,9 +190,9 @@ describe('Task Login & Sort Multi Browser (FAST)', function () {
             assert.strictEqual(logo, 'Swag Labs');
 
             // sorting (CEPAT)
-            await doSort(driver, 'lohi');
             await doSort(driver, 'az');
             await doSort(driver, 'za');
+            await doSort(driver, 'holi');
             await doSort(driver, 'hilo');
 
         } finally {
@@ -228,9 +228,9 @@ describe('Task Login & Sort Multi Browser (FAST)', function () {
             assert.strictEqual(logo, 'Swag Labs');
 
             // sorting (CEPAT)
-            await doSort(driver, 'lohi');
             await doSort(driver, 'az');
-            await doSort(driver, 'za');
+            await doSort(driver, 'az');
+            await doSort(driver, 'lohi');
             await doSort(driver, 'hilo');
 
         } finally {

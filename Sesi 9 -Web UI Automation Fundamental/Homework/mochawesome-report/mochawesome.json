@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2026-04-27T15:11:47.605Z",
-    "end": "2026-04-27T15:12:08.898Z",
-    "duration": 21293,
-    "testsRegistered": 1,
+    "start": "2026-04-27T15:54:28.690Z",
+    "end": "2026-04-27T15:54:37.969Z",
+    "duration": 9279,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "0b9f4267-84e1-4925-8da8-1bb04e0b005a",
+      "uuid": "a84ddb91-86cf-41af-b4e3-d5ceb7e72f57",
       "title": "",
       "fullFile": "D:\\Digitalskola\\Sesi 9 -Web UI Automation Fundamental\\Homework\\tests\\task.js",
       "file": "\\tests\\task.js",
@@ -27,43 +27,62 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "684a2855-dc17-4d4b-97cc-c045138abbfb",
-          "title": "Task Login & Sort Multi Browser",
+          "uuid": "e5e737d3-0cf6-4a21-ac61-d989f48451b7",
+          "title": "Task Login & Sort Multi Browser (FAST)",
           "fullFile": "D:\\Digitalskola\\Sesi 9 -Web UI Automation Fundamental\\Homework\\tests\\task.js",
           "file": "\\tests\\task.js",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
             {
-              "title": "Valid Login & Verify Sort",
-              "fullTitle": "Task Login & Sort Multi Browser Valid Login & Verify Sort",
+              "title": "Chrome - Login & Sorting FAST",
+              "fullTitle": "Task Login & Sort Multi Browser (FAST) Chrome - Login & Sorting FAST",
               "timedOut": false,
-              "duration": 21281,
+              "duration": 2692,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "// 🔹 CHROME\n        const chromeOptions = new chrome.Options();\n        chromeOptions.addArguments('--incognito');\n        const driverChrome = await new Builder()\n            .forBrowser('chrome')\n            .setChromeOptions(chromeOptions)\n            .build();\n        // 🔹 FIREFOX\n        const firefoxOptions = new firefox.Options();\n        const driverFirefox = await new Builder()\n            .forBrowser('firefox')\n            .setFirefoxOptions(firefoxOptions)\n            .build();\n        // 🔥 Jalankan test di kedua browser\n        const drivers = [driverChrome, driverFirefox];\n        for (let driver of drivers) {\n            await runTest(driver);\n        }\n        // tutup semua browser\n        await driverChrome.quit();\n        await driverFirefox.quit();",
+              "code": "const options = new chrome.Options();\n        options.addArguments('--incognito');\n        options.addArguments('--log-level=3'); // hide log\n        const driver = await new Builder()\n            .forBrowser('chrome')\n            .setChromeOptions(options)\n            .build();\n        try {\n            await driver.get('https://www.saucedemo.com');\n            // title\n            assert.strictEqual(await driver.getTitle(), 'Swag Labs');\n            // login\n            await driver.findElement(By.css('[data-test=\"username\"]')).sendKeys('standard_user');\n            await driver.findElement(By.css('[data-test=\"password\"]')).sendKeys('secret_sauce');\n            await driver.findElement(By.css('.submit-button.btn_action')).click();\n            // tunggu masuk inventory\n            await driver.wait(\n                until.elementLocated(By.css('[data-test=\"shopping-cart-link\"]')),\n                10000\n            );\n            // verifikasi logo\n            const logo = await driver.findElement(By.className('app_logo')).getText();\n            assert.strictEqual(logo, 'Swag Labs');\n            // sorting (CEPAT)\n            await doSort(driver, 'lohi');\n            await doSort(driver, 'az');\n            await doSort(driver, 'za');\n            await doSort(driver, 'hilo');\n        } finally {\n            await driver.quit();\n        }",
               "err": {},
-              "uuid": "e450eb82-1edb-4f4e-8c91-62a6368bfe6a",
-              "parentUUID": "684a2855-dc17-4d4b-97cc-c045138abbfb",
+              "uuid": "92597f32-1401-46a3-afbc-eb34bcc25045",
+              "parentUUID": "e5e737d3-0cf6-4a21-ac61-d989f48451b7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Firefox - Login & Sorting FAST",
+              "fullTitle": "Task Login & Sort Multi Browser (FAST) Firefox - Login & Sorting FAST",
+              "timedOut": false,
+              "duration": 6570,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const driver = await new Builder()\n            .forBrowser('firefox')\n            .build();\n        try {\n            await driver.get('https://www.saucedemo.com');\n            assert.strictEqual(await driver.getTitle(), 'Swag Labs');\n            // login\n            await driver.findElement(By.css('[data-test=\"username\"]')).sendKeys('standard_user');\n            await driver.findElement(By.css('[data-test=\"password\"]')).sendKeys('secret_sauce');\n            await driver.findElement(By.css('.submit-button.btn_action')).click();\n            await driver.wait(\n                until.elementLocated(By.css('[data-test=\"shopping-cart-link\"]')),\n                10000\n            );\n            const logo = await driver.findElement(By.className('app_logo')).getText();\n            assert.strictEqual(logo, 'Swag Labs');\n            // sorting (CEPAT)\n            await doSort(driver, 'lohi');\n            await doSort(driver, 'az');\n            await doSort(driver, 'za');\n            await doSort(driver, 'hilo');\n        } finally {\n            await driver.quit();\n        }",
+              "err": {},
+              "uuid": "65bf0cba-f841-4cfd-bbbd-077cb0bebce1",
+              "parentUUID": "e5e737d3-0cf6-4a21-ac61-d989f48451b7",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "e450eb82-1edb-4f4e-8c91-62a6368bfe6a"
+            "92597f32-1401-46a3-afbc-eb34bcc25045",
+            "65bf0cba-f841-4cfd-bbbd-077cb0bebce1"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 21281,
+          "duration": 9262,
           "root": false,
           "rootEmpty": false,
-          "_timeout": 50000
+          "_timeout": 30000
         }
       ],
       "passes": [],

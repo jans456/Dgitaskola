@@ -3,86 +3,106 @@ const assert = require('assert');
 const chrome = require('selenium-webdriver/chrome');
 const firefox = require('selenium-webdriver/firefox');
 
-//  function reusable (dipakai semua browser)
-async function runTest(driver) {
-
-    // buka website
-    await driver.get('https://www.saucedemo.com');
-
-    // cek title
-    const title = await driver.getTitle();
-    assert.strictEqual(title, 'Swag Labs');
-
-    // input login
-    const inputUsername = await driver.findElement(By.css('[data-test="username"]'));
-    const inputPassword = await driver.findElement(By.xpath('//*[@data-test="password"]'));
-    const buttonLogin = await driver.findElement(By.css('.submit-button.btn_action'));
-
-    await inputUsername.sendKeys('standard_user');
-    await inputPassword.sendKeys('secret_sauce');
-    await buttonLogin.click();
-
-    // tunggu halaman inventory muncul
-    const buttonCart = await driver.wait(
-        until.elementLocated(By.xpath('//*[@data-test="shopping-cart-link"]')),
-        10000
-    );
-
-    await driver.wait(until.elementIsVisible(buttonCart), 5000);
-
-    // verifikasi logo
-    const textAppLogo = await driver.findElement(By.className('app_logo'));
-    const logotext = await textAppLogo.getText();
-    assert.strictEqual(logotext, 'Swag Labs');
-
-    // sorting dropdown
-    const dropdownSort = await driver.findElement(By.xpath('//select[@data-test="product-sort-container"]'));
-    await dropdownSort.click();
-
-    const option = await driver.findElement(By.xpath('//option[text()="Price (low to high)"]'));
-    await option.click();
-
-    await driver.sleep(3000);
-
-    const option1 = await driver.findElement(By.xpath('//option[text()="Name (A to Z)"]'));
-    await option1.click();
-    
-
-    // delay biar kelihatan (opsional)
-    await driver.sleep(3000);
-}
-
 describe('Task Login & Sort Multi Browser', function () {
 
-    it('Valid Login & Verify Sort', async function () {
+    this.timeout(40000);
 
-        //  CHROME
-        const chromeOptions = new chrome.Options();
-        chromeOptions.addArguments('--incognito');
+    // =========================
+    // 🔹 CHROME
+    // =========================
+    it('Chrome - Login & Sorting', async function () {
 
-        const driverChrome = await new Builder()
+        const options = new chrome.Options();
+        options.addArguments('--incognito');
+
+        const driver = await new Builder()
             .forBrowser('chrome')
-            .setChromeOptions(chromeOptions)
+            .setChromeOptions(options)
             .build();
 
-        //  FIREFOX
-        const firefoxOptions = new firefox.Options();
+        try {
+            await driver.get('https://www.saucedemo.com');
 
-        const driverFirefox = await new Builder()
-            .forBrowser('firefox')
-            .setFirefoxOptions(firefoxOptions)
-            .build();
+            const title = await driver.getTitle();
+            assert.strictEqual(title, 'Swag Labs');
 
-        //  Jalankan test di kedua browser
-        const drivers = [driverChrome, driverFirefox];
+            // login
+            await driver.findElement(By.css('[data-test="username"]')).sendKeys('standard_user');
+            await driver.findElement(By.css('[data-test="password"]')).sendKeys('secret_sauce');
+            await driver.findElement(By.css('.submit-button.btn_action')).click();
 
-        for (let driver of drivers) {
-            await runTest(driver);
+            await driver.wait(
+                until.elementLocated(By.css('[data-test="shopping-cart-link"]')),
+                10000
+            );
+
+            const logo = await driver.findElement(By.className('app_logo')).getText();
+            assert.strictEqual(logo, 'Swag Labs');
+
+            const dropdown = await driver.findElement(
+                By.xpath('//select[@data-test="product-sort-container"]')
+            );
+
+            // sorting 1
+            await dropdown.click();
+            await driver.findElement(By.xpath('//option[text()="Price (low to high)"]')).click();
+            await driver.sleep(3000);
+
+            // sorting 2
+            await dropdown.click();
+            await driver.findElement(By.xpath('//option[text()="Name (A to Z)"]')).click();
+            await driver.sleep(3000);
+
+        } finally {
+            await driver.quit();
         }
+    });
 
-        // tutup semua browser
-        await driverChrome.quit();
-        await driverFirefox.quit();
+    // =========================
+    // 🔹 FIREFOX
+    // =========================
+    it('Firefox - Login & Sorting', async function () {
+
+        const driver = await new Builder()
+            .forBrowser('firefox')
+            .build();
+
+        try {
+            await driver.get('https://www.saucedemo.com');
+
+            const title = await driver.getTitle();
+            assert.strictEqual(title, 'Swag Labs');
+
+            // login
+            await driver.findElement(By.css('[data-test="username"]')).sendKeys('standard_user');
+            await driver.findElement(By.css('[data-test="password"]')).sendKeys('secret_sauce');
+            await driver.findElement(By.css('.submit-button.btn_action')).click();
+
+            await driver.wait(
+                until.elementLocated(By.css('[data-test="shopping-cart-link"]')),
+                10000
+            );
+
+            const logo = await driver.findElement(By.className('app_logo')).getText();
+            assert.strictEqual(logo, 'Swag Labs');
+
+            const dropdown = await driver.findElement(
+                By.xpath('//select[@data-test="product-sort-container"]')
+            );
+
+            // sorting 1
+            await dropdown.click();
+            await driver.findElement(By.xpath('//option[text()="Price (low to high)"]')).click();
+            await driver.sleep(3000);
+
+            // sorting 2
+            await dropdown.click();
+            await driver.findElement(By.xpath('//option[text()="Name (A to Z)"]')).click();
+            await driver.sleep(3000);
+
+        } finally {
+            await driver.quit();
+        }
     });
 
 });

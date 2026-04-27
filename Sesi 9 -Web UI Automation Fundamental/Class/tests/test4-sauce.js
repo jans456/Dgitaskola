@@ -1,6 +1,6 @@
 // const {Builder, By, until} = require('selenium-webdriver');
 // const assert = require('assert');
-// const chrome = require('selenium-webdrvier/chrome'); // tambahan
+// const chrome = require('selenium-webdriver/chrome'); // tambahan
 
 // describe('Google Search Tests', function() {
 //     let driver;

@@ -2,6 +2,7 @@ const { Builder } = require('selenium-webdriver');
 const LoginAction = require('../actions/login.action')
 const SharingAction = require('../actions/sharing.action'); // ad ss
 const LoginPage = require('../pageobjects/login.page');
+const chrome = require('selenium-webdriver/chrome');
 
 describe('Login', () => {
     let driver; 

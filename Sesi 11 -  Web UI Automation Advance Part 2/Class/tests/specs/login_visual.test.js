@@ -27,6 +27,7 @@ describe('Login', () => {
         await loginAction.clickLoginButton();
         await loginAction.assertLoginSuccess('Products');
 
+        driver.sleep(1000); //example agar sama
         await compareScreenshot(driver, 'positiv_product_page', 5); // add syntax, 5 adalah merubah maxDiffPercent default dari 2 y (sudah dicoba dan hasilnya beda karna batas maksimal 2% berarti gambar beda, bisa dicooret" juga di baseline biar beda)
     });
 

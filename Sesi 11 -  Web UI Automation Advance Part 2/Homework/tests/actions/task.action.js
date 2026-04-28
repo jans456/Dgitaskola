@@ -1,5 +1,5 @@
 const TaskPage = require('../pageobjects/task.page')
-const assert = require('assert');
+const assert = require('assert'); //assertion
 const {until} = require('selenium-webdriver');
 
 class TaskAction{
@@ -23,7 +23,7 @@ class TaskAction{
     async clickLoginButton(){
         await this.driver.findElement(TaskPage.loginButton).click();
     }
-    
+    //assertion sucess login 27-35
     async assertLoginSuccess(header) {
     await this.driver.wait(until.elementLocated(TaskPage.pageTitle), 5000);
 
@@ -33,7 +33,7 @@ class TaskAction{
 
     assert.strictEqual(title, header);
     }
-
+    //assertion 37-46
     async assertLoginFailed(expectedErrorMessage) {
     await this.driver.wait(until.elementLocated(TaskPage.errorMessage), 5000);
 

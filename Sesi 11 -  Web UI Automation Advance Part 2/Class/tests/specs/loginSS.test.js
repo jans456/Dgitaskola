@@ -41,7 +41,7 @@ describe('Login', () => {
         await loginAction.inputUsername('standard_user');
         await loginAction.clickLoginButton();
         await loginAction.assertLoginFailed('Epic sadface: Password is required');
-        await sharingAction.fullPageScreenshot(LoginPage.errorMessage, 'login_empty_password'); // add ss negatif full screen
+        await sharingAction.fullPageScreenshot('login_empty_password'); // add ss negatif full screen
     });
 })
 

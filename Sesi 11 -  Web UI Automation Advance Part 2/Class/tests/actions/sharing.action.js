@@ -11,8 +11,8 @@ class SharingAction {
 
     }
 
-    async partialScreenshot(elemnt, fileName){
-        const partial = await this.driver.findEelement(element).takeScreenshot();
+    async partialScreenshot(element, fileName){
+        const partial = await this.driver.findElement(element).takeScreenshot();
         fs.writeFileSync('screenshot/' + fileName + '.png', partial, 'base64');
 
     }

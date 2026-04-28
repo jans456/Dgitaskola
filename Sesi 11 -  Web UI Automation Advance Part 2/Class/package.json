@@ -6,7 +6,9 @@
     "tests": "mocha tests --recursive --timeout 50000 --reporter mochawesome"
   },
   "dependencies": {
-    "selenium-webdriver": "^4.17.0"
+    "selenium-webdriver": "^4.17.0",
+    "pixelmatch": "7.1.0",
+    "pngjs" : "7.0.0"
   },
   "devDependencies": {
     "mochawesome": "^7.1.3",

@@ -27,19 +27,23 @@ describe('Login', () => {
         await loginAction.inputPassword('secret_sauce');
         await loginAction.clickLoginButton();
         await loginAction.assertLoginSuccess('Products');
-        await sharingAction.fullPageScreenshot('login_positive') // add ss positiv
+        await sharingAction.fullPageScreenshot('login_positive') // add ss positiv full screen
     });
 
     it('Login with empty username', async () => {
         await loginAction.inputPassword('secret_sauce');
         await loginAction.clickLoginButton();
         await loginAction.assertLoginFailed('Epic sadface: Username is required');
-        await sharingAction.partialScreenshot(LoginPage.errorMessage, 'loginempty_username'); // add ss negatif
+        await sharingAction.partialScreenshot(LoginPage.errorMessage, 'login_empty_username'); // add ss negatif partial screen
     });
 
     it('Login with empty password', async () => {
         await loginAction.inputUsername('standard_user');
         await loginAction.clickLoginButton();
         await loginAction.assertLoginFailed('Epic sadface: Password is required');
+        await sharingAction.fullPageScreenshot(LoginPage.errorMessage, 'login_empty_password'); // add ss negatif full screen
     });
 })
+
+// for run : npx mocha tests/specs/loginSS.test.js --timeout 6000
+// same (sama) name file

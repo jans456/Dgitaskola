@@ -37,3 +37,5 @@ describe('Login', () => {
         await loginAction.assertLoginFailed('Epic sadface: Password is required');
     });
 })
+
+//for run npx mocha tests/specs --timeout 6000

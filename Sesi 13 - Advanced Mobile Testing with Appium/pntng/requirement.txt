@@ -5,8 +5,9 @@ You have
 set emulator in android studio
 
 lets go
-1.create folder 
-2.create package.json use syntax = npm init, if it is already ,install npm init wdio.
+
+1.create folder & on emulator : emulator avd (name_emulator) via cmd
+2.create package.json use syntax = npm init, if it is already ,install : npm init wdio.
 3.cmd pops up a question
 - Testing type : E2E Testing - of Web or Mobile Application
 - Automation backend located : On my local machine
@@ -35,7 +36,24 @@ example in folder to .txt check 1-3
 - specs
 9.fill the folder with files like the example
 10.install report use allure : npm install --save-dev @wdio/allure-reporter allure-commandline
-11. for run
- 1-  appiu
- 2-  npx wdio run .\wdio.conf.ts     
- 3-  npx allure serve allure-results      
+11.config report allure, check :150-154, add to wdio.conf.ts
+12. for run
+ 1-  appium
+ 2-  appium driver install uiautomator2 
+ 3-  npx wdio run .\wdio.conf.ts     
+ 4-  npx allure serve allure-results   
+
+
+how check inspector find XPATH
+1. Download https://github.com/appium/appium-inspector/releases
+2. i use windows download extesions .win (64)
+3. input json Representation
+fill :
+{
+  "platformName": "Android", // for android
+  "appium:platformVersion": "16.0", //version android
+  "appium:deviceName": "trainingdigitaskola", // name emulator
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "D:\Digitalskola\Sesi 13 - Advanced Mobile Testing with Appium\Homework\apk\ApiDemos-debug.apk", //location apk
+  "appium:noReset": false
+}

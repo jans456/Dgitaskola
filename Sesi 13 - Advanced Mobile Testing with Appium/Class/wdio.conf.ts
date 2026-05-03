@@ -1,17 +1,16 @@
 import * as path from 'path';
 
-const appPath = path.join(__dirname, 'apk', 'ApiDemos-debug.apk');
+const appPath = path.resolve('./apk/ApiDemos-debug.apk');
 
 
 export const config: WebdriverIO.Config = {
-    
     //
     // ====================
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
-    tsConfigPath: './tsconfig.json',
+    tsConfigPath: './test/tsconfig.json',
     
     port: 4723,
     //
@@ -61,12 +60,11 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
         platformName: 'Android',
-        'appium:deviceName': 'trainidigitalskola',
+        'appium:deviceName': 'trainingdigitaskola',
         'appium:platformVersion': '16.0',
         'appium:automationName': 'UiAutomator2',
         'appium:app': appPath,
         'appium:noReset': false
-
     }],
 
     //
@@ -125,6 +123,7 @@ export const config: WebdriverIO.Config = {
             command: 'appium',
         }]
     ],
+
 
 
     // Framework you want to run your specs with.
